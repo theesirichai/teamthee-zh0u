@@ -3,12 +3,13 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  projectId: "pro-victor-55xj8",
-  appId: "1:41574623467:web:e8fcf4ba582044baa1b6ae",
-  apiKey: "AIzaSyAU1ly8mGrXBNg7tAKZFWFwqaWlgxk0uIs",
-  authDomain: "pro-victor-55xj8.firebaseapp.com",
-  storageBucket: "pro-victor-55xj8.firebasestorage.app",
-  messagingSenderId: "41574623467",
+  apiKey: "AIzaSyBpMRG60_m2INYojJwSZWt1aEbdcGbMCs8",
+  authDomain: "teamthee-todoflow.firebaseapp.com",
+  projectId: "teamthee-todoflow",
+  storageBucket: "teamthee-todoflow.firebasestorage.app",
+  messagingSenderId: "8206784532",
+  appId: "1:8206784532:web:0c57cfce047934256b6f01",
+  measurementId: "G-SZVKEQKQ24"
 };
 
 const app = initializeApp(firebaseConfig);

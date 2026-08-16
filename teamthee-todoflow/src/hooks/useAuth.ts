@@ -22,7 +22,7 @@ export function useAuth() {
   const login = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login failed', error);
     }
   };
