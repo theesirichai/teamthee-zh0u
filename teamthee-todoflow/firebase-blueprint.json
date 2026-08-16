@@ -1,0 +1,54 @@
+{
+  "collections": {
+    "users": {
+      "description": "User profiles and settings",
+      "fields": {
+        "email": {
+          "description": "User's email address",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User's display name",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Account creation timestamp",
+          "type": "timestamp"
+        }
+      }
+    },
+    "tasks": {
+      "description": "User tasks and to-do items",
+      "fields": {
+        "userId": {
+          "description": "The ID of the user who owns this task",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the task",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional detailed description",
+          "type": "string"
+        },
+        "completed": {
+          "description": "Whether the task is finished",
+          "type": "boolean"
+        },
+        "dueDate": {
+          "description": "Optional deadline for the task",
+          "type": "timestamp"
+        },
+        "createdAt": {
+          "description": "When the task was created",
+          "type": "timestamp"
+        },
+        "updatedAt": {
+          "description": "When the task was last modified",
+          "type": "timestamp"
+        }
+      }
+    }
+  }
+}
