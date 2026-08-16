@@ -40,12 +40,20 @@ export function useTasks(userId: string | undefined) {
           ...data,
           priority: data.priority || 'medium',
           // Convert Firestore timestamps to numbers for easier handling in React
+          // Handle cases where serverTimestamp is still pending (null)
           createdAt: data.createdAt?.toMillis() || Date.now(),
           updatedAt: data.updatedAt?.toMillis() || Date.now(),
           dueDate: data.dueDate?.toMillis(),
         } as Task);
       });
       setTasks(taskList);
+      setLoading(false);
+    }, (error) => {
+      console.error("Firestore Listener Error:", error);
+      // Check if it's a missing index error
+      if (error.code === 'failed-precondition') {
+        console.warn("⚠️ Missing Firestore index. Check browser console for the creation link.");
+      }
       setLoading(false);
     });
 

@@ -17,6 +17,9 @@ export default defineConfig(() => {
           short_name: 'TodoFlow',
           description: 'A modern, cloud-synced to-do list',
           theme_color: '#0a0a0c',
+          background_color: '#0a0a0c',
+          display: 'standalone',
+          orientation: 'portrait',
           icons: [
             {
               src: 'pwa-192x192.png',
