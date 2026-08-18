@@ -1,0 +1,156 @@
+/* 1. SETUP สไตล์พื้นฐาน */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #2c2d30;
+    color: #92969c;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 2. จัดเลย์เอาต์แบ่งฝั่งซ้าย-ขวา */
+.left-sidebar {
+    width: 35%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-right: 1px solid #383a3e;
+}
+
+.right-content {
+    width: 65%;
+    margin-left: 35%;
+    padding: 80px 10%;
+}
+
+/* 3. สไตล์ฝั่งซ้าย (โปรไฟล์) */
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 30px;
+    filter: grayscale(20%);
+}
+.profile-name {
+    color: #d1d4db;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.profile-bio {
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 280px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+.social-links a {
+    color: #92969c;
+    font-size: 1.3rem;
+    margin: 0 10px;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+}
+.social-links a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* 4. สไตล์ฝั่งขวา (เมนูและคอนเทนต์) */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+.nav-menu a {
+    color: #92969c;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+.nav-menu a.active, .nav-menu a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+.year-title {
+    color: #d1d4db;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.home-intro p {
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* สไตล์สำหรับรายการในหน้า posts.html */
+.post-list {
+    list-style: none;
+}
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.post-item:hover {
+    border-color: #383a3e;
+}
+.post-link {
+    color: #92969c;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+    padding-right: 20px;
+}
+.post-link:hover {
+    color: #ffffff;
+}
+.post-date {
+    font-size: 0.85rem;
+    color: #61656c;
+    white-space: nowrap;
+}
+
+/* 5. RESPONSIVE DESIGN (สำหรับมือถือ) */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .left-sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 60px 20px 40px 20px;
+        border-right: none;
+        border-bottom: 1px solid #383a3e;
+    }
+    .right-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 40px 20px;
+    }
+    .nav-menu {
+        justify-content: center;
+    }
+}
