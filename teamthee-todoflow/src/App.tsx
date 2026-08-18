@@ -13,16 +13,13 @@ export default function App() {
   const { tasks, loading: tasksLoading, addTask, toggleTask, deleteTask } = useTasks(user?.uid);
   
   const [inputCode, setInputCode] = useState('');
-  const [isAuthorized, setIsAuthorized] = useState(() => {
-    return localStorage.getItem('todo_flow_authorized') === 'true';
-  });
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [error, setError] = useState(false);
 
   const handleAccess = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputCode === ACCESS_CODE) {
       setIsAuthorized(true);
-      localStorage.setItem('todo_flow_authorized', 'true');
       setError(false);
     } else {
       setError(true);

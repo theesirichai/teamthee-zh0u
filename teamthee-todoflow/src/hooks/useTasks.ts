@@ -25,37 +25,49 @@ export function useTasks(userId: string | undefined) {
       return;
     }
 
-    const q = query(
+    setLoading(true);
+    console.log("🔄 Starting Task Listener for UID:", userId);
+    
+    // Simple query first to ensure we get data even without complex indexes
+    const qSimple = query(
       collection(db, 'tasks'),
-      where('userId', '==', userId),
-      orderBy('createdAt', 'desc')
+      where('userId', '==', userId)
     );
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const taskList: Task[] = [];
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        taskList.push({
-          id: doc.id,
-          ...data,
-          priority: data.priority || 'medium',
-          // Convert Firestore timestamps to numbers for easier handling in React
-          // Handle cases where serverTimestamp is still pending (null)
-          createdAt: data.createdAt?.toMillis() || Date.now(),
-          updatedAt: data.updatedAt?.toMillis() || Date.now(),
-          dueDate: data.dueDate?.toMillis(),
-        } as Task);
+    let unsubscribe: () => void;
+
+    const setupListener = (q: any, isFallback: boolean = false) => {
+      return onSnapshot(q, (snapshot) => {
+        console.log(`✅ Snapshot received [${isFallback ? 'Fallback' : 'Primary'}]:`, snapshot.size, "items found for", userId);
+        
+        const taskList: Task[] = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          // Debug individual document if needed
+          if (snapshot.size < 5) console.log("📄 Document:", doc.id, data);
+          
+          taskList.push({
+            id: doc.id,
+            ...data,
+            priority: data.priority || 'medium',
+            createdAt: data.createdAt?.toMillis ? data.createdAt.toMillis() : (data.createdAt || Date.now()),
+            updatedAt: data.updatedAt?.toMillis ? data.updatedAt.toMillis() : (data.updatedAt || Date.now()),
+            dueDate: data.dueDate?.toMillis ? data.dueDate.toMillis() : data.dueDate,
+          } as Task);
+        });
+
+        // Always sort in memory to be safe and consistent
+        taskList.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+        setTasks([...taskList]);
+        setLoading(false);
+      }, (error) => {
+        console.error("❌ Firestore Listener Error:", error.code, error.message);
+        setLoading(false);
       });
-      setTasks(taskList);
-      setLoading(false);
-    }, (error) => {
-      console.error("Firestore Listener Error:", error);
-      // Check if it's a missing index error
-      if (error.code === 'failed-precondition') {
-        console.warn("⚠️ Missing Firestore index. Check browser console for the creation link.");
-      }
-      setLoading(false);
-    });
+    };
+
+    unsubscribe = setupListener(qSimple); // Use simple query by default to ensure visibility
 
     return () => unsubscribe();
   }, [userId]);
