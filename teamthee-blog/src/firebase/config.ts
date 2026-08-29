@@ -3,12 +3,12 @@ import { getFirestore, Firestore } from 'firebase/firestore';
 import { getAuth, Auth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAGgVgT56sodcg6WpOEqwTTz2qN1sCSD9Q",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "teamthee-portal.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "teamthee-portal",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "teamthee-portal.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1087869882052",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1087869882052:web:d31fc9bb21ddd0ed59c391"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAujnfkJ86SqsRWF1XyHF5nbFGGyHKznOw",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "teamthee-blog.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "teamthee-blog",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "teamthee-blog.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "221243694155",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:221243694155:web:6e9b09683c90c2d36581ce"
 };
 
 let app;

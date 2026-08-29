@@ -51,7 +51,7 @@ You can log into the Security Terminal using the following master identifier:
 
 ## ☁️ Firebase Firestore Setup
 
-The app is already pre-configured to connect with your Firebase project (`teamthee-portal`).
+The app is already pre-configured to connect with your Firebase project (`teamthee-blog`).
 
 In Firestore Database, the articles are stored under the **`posts`** collection with the following document structure:
 
